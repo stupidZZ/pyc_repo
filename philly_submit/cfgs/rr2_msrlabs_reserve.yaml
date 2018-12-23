@@ -1,0 +1,22 @@
+---
+cluster: rr2
+vc: msrlabs
+submit_user: v-lize
+user_folder: "/hdfs/msrlabs/v-wesu2"
+job:
+  debug: true
+  name_prefix: "swj:mxnet_vm_docker_lz"
+  type: custom_v2
+  exec_file: "/hdfs/msrlabs/v-wesu2/test.sh"
+  display_exec_file: false
+  ngpu: 8
+  rack: anyConnected
+  docker_repo: test
+  lib: mxnet
+  tag: v131_py27_cuda9_zeliu
+  params:
+    # now there is a bug to fix when params is empty, so here add a null param to avoid the bug.
+    - name: null
+      value:
+        - null
+      displayed: false

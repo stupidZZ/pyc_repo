@@ -1,0 +1,29 @@
+---
+cluster: wu1
+vc: resrchvc
+submit_user: v-wesu
+user_folder: "/hdfs/resrchvc/v-wesu"
+job:
+  name_prefix: test
+  type: custom_v2
+  exec_file: "experiments/faster_rcnn/rcnn_end2end_train_test.py"
+  ngpu: 4
+  rack: anyConnected
+  docker_repo: custom
+  lib: mxnet
+  tag: v110_py27_cuda9
+  params:
+    - name: --cfg
+      value:
+        - "experiments/faster_rcnn/cfgs/resnet_v1_101_voc0712_rcnn_end2end.yaml"
+        - "experiments/faster_rcnn/cfgs/resnet_v1_101_voc0712_rcnn_dcn_end2end.yaml"
+      displayed: true
+git:
+  enabled: true
+  philly_script: "run_on_philly.py"
+  root: "github.com"
+  repo: "msracver/Deformable-ConvNets"
+  bran: master
+  auth: 'git' # replace with your deployment key
+  home_dir: '/tmp'
+  work_dir: 'Deformable-ConvNets'
